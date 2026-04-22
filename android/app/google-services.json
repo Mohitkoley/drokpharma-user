@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "789606222810",
+    "project_id": "drokpharma",
+    "storage_bucket": "drokpharma.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789606222810:android:2ad282e3350fe3bf520ee3",
+        "android_client_info": {
+          "package_name": "com.drokpharma.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIFqtHnGhp5STM0TVqikOKr2I-0SMQvY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789606222810:android:793d90f55728b612520ee3",
+        "android_client_info": {
+          "package_name": "com.drokpharma.vendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIFqtHnGhp5STM0TVqikOKr2I-0SMQvY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
