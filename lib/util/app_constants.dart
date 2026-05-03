@@ -4,7 +4,7 @@ import 'package:sixam_mart/features/language/domain/models/language_model.dart';
 import 'package:sixam_mart/util/images.dart';
 
 class AppConstants {
-  static const String appName = 'Drok Pharma';
+  static const String appName = 'Drok';
   static const double appVersion = 1.0;
 
   ///Flutter sdk 3.41.6
