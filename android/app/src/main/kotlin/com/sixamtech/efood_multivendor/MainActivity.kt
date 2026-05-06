@@ -1,4 +1,4 @@
-package com.drokpharma.user
+package com.drokpharma.usr
 
 import io.flutter.embedding.android.FlutterActivity
 

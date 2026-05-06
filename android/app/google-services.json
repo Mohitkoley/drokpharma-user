@@ -7,9 +7,83 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:789606222810:android:d6858acd0244daed520ee3",
+        "android_client_info": {
+          "package_name": "com.drokpharma.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789606222810-a5havd3p9us5vdo1s6da0hddlaqlm9s4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.drokpharma.driver",
+            "certificate_hash": "7682721e3908a74c429e683fe1dcb8e9cf7cb9d7"
+          }
+        },
+        {
+          "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIFqtHnGhp5STM0TVqikOKr2I-0SMQvY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:789606222810:android:2ad282e3350fe3bf520ee3",
         "android_client_info": {
           "package_name": "com.drokpharma.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789606222810-0ej5s31irl5tknn5j394f21rvg8f5070.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.drokpharma.user",
+            "certificate_hash": "7682721e3908a74c429e683fe1dcb8e9cf7cb9d7"
+          }
+        },
+        {
+          "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIFqtHnGhp5STM0TVqikOKr2I-0SMQvY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789606222810:android:467fb9681bc7d70b520ee3",
+        "android_client_info": {
+          "package_name": "com.drokpharma.usr"
         }
       },
       "oauth_client": [
@@ -42,6 +116,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "789606222810-9r7q25do0u0jap40p2v8vcdqcqff287d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.drokpharma.vendor",
+            "certificate_hash": "7682721e3908a74c429e683fe1dcb8e9cf7cb9d7"
+          }
+        },
         {
           "client_id": "789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com",
           "client_type": 3
