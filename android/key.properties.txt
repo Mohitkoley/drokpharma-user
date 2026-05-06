@@ -1,4 +1,0 @@
-keyAlias=app_key
-keyPassword=123456
-storeFile=../app.jks
-storePassword=123456
