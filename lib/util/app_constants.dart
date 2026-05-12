@@ -5,7 +5,7 @@ import 'package:sixam_mart/util/images.dart';
 
 class AppConstants {
   static const String appName = 'Drok';
-  static const double appVersion = 1.0;
+  static const double appVersion = 3.90;
 
   ///Flutter sdk 3.41.6
 
