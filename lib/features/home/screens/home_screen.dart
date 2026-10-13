@@ -239,6 +239,45 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget _bookOnlineButton(BuildContext context) {
+    const double sourceWidth = 1080;
+    const double sourceHeight = 1080;
+    const double artworkLeft = 37;
+    const double artworkTop = 372;
+    const double artworkWidth = 1036;
+    const double artworkHeight = 343;
+    final double imageWidth = ResponsiveHelper.isDesktop(context) ? 220 : 170;
+    final double scale = imageWidth / sourceWidth;
+
+    return InkWell(
+      onTap: () async => await launchUrlString(
+        'https://drok.in', mode: LaunchMode.externalApplication,
+      ),
+      child: ClipRect(
+        child: SizedBox(
+          width: artworkWidth * scale,
+          height: artworkHeight * scale,
+          child: OverflowBox(
+            alignment: Alignment.topLeft,
+            minWidth: imageWidth,
+            maxWidth: imageWidth,
+            minHeight: sourceHeight * scale,
+            maxHeight: sourceHeight * scale,
+            child: Transform.translate(
+              offset: Offset(-artworkLeft * scale, -artworkTop * scale),
+              child: Image.asset(
+                'assets/image/online_booking2.png',
+                width: imageWidth,
+                height: sourceHeight * scale,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(builder: (splashController) {
@@ -537,17 +576,28 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+              children: ResponsiveHelper.isDesktop(context) ? [
                 InkWell(
                   onTap: () async => await launchUrlString(
                     'https://drok.in', mode: LaunchMode.externalApplication,
                   ),
-                  child: ColoredBox(color: Colors.white, child: Image.asset(
-                    'assets/image/book_online.png',
-                    width: ResponsiveHelper.isDesktop(context) ? 220 : 170,
-                    fit: BoxFit.contain,
-                  ),),
+                  child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(Dimensions.radiusDefault),
+                      ),
+                    ),
+                    child: Image.asset(
+                      'assets/image/book_online.png',
+                      width: 220,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
+              ] : [
+                _bookOnlineButton(context),
                 InkWell(
                   onTap: () async => await launchUrlString(
                     'https://wa.me/918445777639?text=${Uri.encodeComponent('Welcome to DROK Healthcare – Your One-Stop Solution for Doctor Consultation, Medicines, Lab Tests & Home Care.')}',
