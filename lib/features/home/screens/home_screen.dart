@@ -6,8 +6,6 @@ import 'package:sixam_mart/features/brands/controllers/brands_controller.dart';
 import 'package:sixam_mart/features/home/controllers/advertisement_controller.dart';
 import 'package:sixam_mart/features/home/controllers/home_controller.dart';
 import 'package:sixam_mart/features/home/widgets/all_store_filter_widget.dart';
-import 'package:sixam_mart/features/home/widgets/cashback_logo_widget.dart';
-import 'package:sixam_mart/features/home/widgets/cashback_dialog_widget.dart';
 import 'package:sixam_mart/features/home/widgets/refer_bottom_sheet_widget.dart';
 import 'package:sixam_mart/features/item/controllers/campaign_controller.dart';
 import 'package:sixam_mart/features/category/controllers/category_controller.dart';
@@ -52,6 +50,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/module_view.dart';
 import 'package:sixam_mart/features/parcel/screens/parcel_category_screen.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -533,14 +532,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ) : const SizedBox();
               }
-          ) : AuthHelper.isLoggedIn() && homeController.cashBackOfferList != null && homeController.cashBackOfferList!.isNotEmpty ?
-          homeController.showFavButton ? Padding(
+          ) : homeController.showFavButton ? Padding(
             padding: EdgeInsets.only(bottom: 50.0, right: ResponsiveHelper.isDesktop(context) ? 50 : 0),
-            child: InkWell(
-              onTap: () => Get.dialog(const CashBackDialogWidget()),
-              child: const CashBackLogoWidget(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () async => await launchUrlString(
+                    'https://drok.in', mode: LaunchMode.externalApplication,
+                  ),
+                  child: ColoredBox(color: Colors.white, child: Image.asset(
+                    'assets/image/book_online.png',
+                    width: ResponsiveHelper.isDesktop(context) ? 220 : 170,
+                    fit: BoxFit.contain,
+                  ),),
+                ),
+                InkWell(
+                  onTap: () async => await launchUrlString(
+                    'https://wa.me/918445777639?text=${Uri.encodeComponent('Welcome to DROK Healthcare – Your One-Stop Solution for Doctor Consultation, Medicines, Lab Tests & Home Care.')}',
+                    mode: LaunchMode.externalApplication,
+                  ),
+                  child: Image.asset(
+                    'assets/image/whatsapp_icon.png',
+                    height: ResponsiveHelper.isDesktop(context) ? 60 : 52,
+                    width: ResponsiveHelper.isDesktop(context) ? 60 : 52,
+                  ),
+                ),
+              ],
             ),
-          ) : null : null,
+          ) : null,
 
         );
       });
