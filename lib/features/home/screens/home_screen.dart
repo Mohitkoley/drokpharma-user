@@ -576,27 +576,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: ResponsiveHelper.isDesktop(context) ? [
-                InkWell(
-                  onTap: () async => await launchUrlString(
-                    'https://drok.in', mode: LaunchMode.externalApplication,
-                  ),
-                  child: Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(Dimensions.radiusDefault),
-                      ),
-                    ),
-                    child: Image.asset(
-                      'assets/image/book_online.png',
-                      width: 220,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ] : [
+              children: [
                 _bookOnlineButton(context),
                 InkWell(
                   onTap: () async => await launchUrlString(
