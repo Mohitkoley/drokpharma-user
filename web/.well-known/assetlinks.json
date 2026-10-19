@@ -1,9 +1,11 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.sixamtech.sixam_mart_user",
-    "sha256_cert_fingerprints":
-    ["4E:A9:87:31:71:3F:0D:FA:B5:9F:82:6C:BD:42:82:F5:4B:60:6B:E7:DA:DB:4A:67:F8:98:A2:0E:EF:2E:03:5B"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.drokpharma.usr",
+      "sha256_cert_fingerprints":
+        ["9A:CA:46:2C:78:A6:D3:B1:87:22:97:7A:04:32:DB:32:3B:D9:A0:37:49:9D:FA:AE:AD:F7:4F:59:1A:2C:20:7C"]
+    }
   }
-}]
+]
