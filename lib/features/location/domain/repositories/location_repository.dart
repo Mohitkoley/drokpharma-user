@@ -42,7 +42,8 @@ class LocationRepository implements LocationRepositoryInterface {
 
   @override
   Future<Response> searchLocation(String text) async {
-    return await apiClient.getData('${AppConstants.searchLocationUri}?search_text=$text');
+    final query = Uri.encodeQueryComponent(text.trim().toLowerCase());
+    return await apiClient.getData('${AppConstants.searchLocationUri}?search_text=$query');
   }
 
   @override

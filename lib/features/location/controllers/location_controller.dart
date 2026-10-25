@@ -212,24 +212,37 @@ class LocationController extends GetxController implements GetxService {
       return;
     }
 
-    ZoneResponseModel response = await getZone(AddressHelper.getUserAddressFromSharedPref()?.latitude??'0', AddressHelper.getUserAddressFromSharedPref()?.longitude??'0', false, updateInAddress: true);
+    AddressModel? address = AddressHelper.getUserAddressFromSharedPref();
+    final savedLatitude = double.tryParse(address?.latitude ?? '');
+    final savedLongitude = double.tryParse(address?.longitude ?? '');
+    final hasInvalidSavedLocation = address == null
+        || savedLatitude == null
+        || savedLongitude == null
+        || (savedLatitude == 0 && savedLongitude == 0);
+    final defaultLocation = Get.find<SplashController>().configModel?.defaultLocation;
+    final latitude = hasInvalidSavedLocation ? defaultLocation?.lat : address.latitude;
+    final longitude = hasInvalidSavedLocation ? defaultLocation?.lng : address.longitude;
+
+    ZoneResponseModel response = await getZone(latitude ?? '0', longitude ?? '0', false, updateInAddress: true);
 
     if(response.zoneIds.isEmpty) {
       print('====zone ids is empty==================');
       // await AddressHelper.saveUserAddressInSharedPref(AddressModel());
       // Get.toNamed(RouteHelper.getAccessLocationRoute(RouteHelper.splash));
     } else {
-      AddressModel? address = AddressHelper.getUserAddressFromSharedPref();
-      if(address != null) {
-        address.zoneId = response.zoneIds[0];
-        address.zoneIds = [];
-        address.zoneIds!.addAll(response.zoneIds);
-        address.zoneData = [];
-        address.zoneData!.addAll(response.zoneData);
-        address.areaIds = [];
-        address.areaIds!.addAll(response.areaIds);
-        await AddressHelper.saveUserAddressInSharedPref(address);
+      address ??= AddressModel(addressType: 'my_location');
+      if(hasInvalidSavedLocation) {
+        address.latitude = latitude;
+        address.longitude = longitude;
       }
+      address.zoneId = response.zoneIds[0];
+      address.zoneIds = [];
+      address.zoneIds!.addAll(response.zoneIds);
+      address.zoneData = [];
+      address.zoneData!.addAll(response.zoneData);
+      address.areaIds = [];
+      address.areaIds!.addAll(response.areaIds);
+      await AddressHelper.saveUserAddressInSharedPref(address);
     }
     update();
   }
@@ -475,22 +488,12 @@ class LocationController extends GetxController implements GetxService {
     );
   }
 
-  Timer? _debounce;
   Future<List<PredictionModel>> searchLocation(BuildContext context, String query) async {
     if (query.isEmpty) return [];
 
-    _debounce?.cancel();
-    final completer = Completer<List<PredictionModel>>();
-    _debounce = Timer(const Duration(milliseconds: 400), () async {
-      try {
-        final result = await locationServiceInterface.searchLocation(query);
-        completer.complete(result);
-      } catch (e) {
-        completer.completeError(e);
-      }
-    });
-
-    return completer.future;
+    // TypeAhead already debounces calls. A second, cancellable timer here left
+    // cancelled futures incomplete, which could keep the suggestions list empty.
+    return locationServiceInterface.searchLocation(query);
   }
 
   void setPlaceMark(String address) {
@@ -542,7 +545,7 @@ class LocationController extends GetxController implements GetxService {
     }else {
       // locationServiceInterface.defaultNavigation(page, mapController);
       if(ResponsiveHelper.isDesktop(Get.context)) {
-        showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
+        showGeneralDialog(context: Get.context!, pageBuilder: (_,_,_) {
           return SizedBox(
             height: Get.context!.height * 0.75, width: 300,
             child: PickMapScreen(
