@@ -1,17 +1,32 @@
-# sixam_mart
+# Drok Pharma — Flutter Customer App (`drokpharma-user`)
 
-A new Flutter application.
+Cross-platform customer mobile and web application for Drok Healthcare, built with **Flutter 3.41+** and **GetX**.
 
-## Getting Started
-## flutter sdk: 3.41.6
+For the complete project map and architecture, please see the [Root README.md](../README.md).
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## Key Files & Directories
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **API Base URL & Endpoints**: [`lib/util/app_constants.dart`](lib/util/app_constants.dart)
+  - Configure `baseUrl` for localhost, emulator, or production.
+- **HTTP Client & Real-time Request Logging**: [`lib/api/api_client.dart`](lib/api/api_client.dart)
+  - Intercepts and logs all outgoing requests, headers, bodies, responses, duration, and errors.
+- **Features & Screens**: [`lib/features/`](lib/features/)
+  - `auth/` — Login, registration, OTP verification.
+  - `item/` — Medicines, products, lab tests.
+  - `store/` — Pharmacies, clinics, diagnostic centers.
+  - `cart/` & `checkout/` — Cart management & order placement.
+  - `order/` — Order history & live tracking.
+  - `location/` & `address/` — Zone detection, address management.
+- **Routes & Navigation**: [`lib/helper/route_helper.dart`](lib/helper/route_helper.dart)
+- **Theme & Styles**: [`lib/theme/`](lib/theme/) and [`lib/util/styles.dart`](lib/util/styles.dart)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Running Locally
+
+```bash
+flutter run
+```
+Make sure the backend is running on `http://127.0.0.1:8000`.

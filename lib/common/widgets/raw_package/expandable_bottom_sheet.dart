@@ -99,7 +99,7 @@ class ExpandableBottomSheetState extends State<ExpandableBottomSheet>
   bool _useDrag = true;
   bool _callCallbacks = false;
 
-  bool _showHeader = false;
+  final bool _showHeader = false;
 
   /// Expands the content of the widget.
   void expand({int? duration}) {

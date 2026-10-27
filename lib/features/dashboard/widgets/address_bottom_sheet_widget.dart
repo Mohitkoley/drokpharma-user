@@ -112,7 +112,7 @@ class AddressBottomSheetWidget extends StatelessWidget {
                             Get.back();
                             if(ResponsiveHelper.isDesktop(Get.context)) {
                               Get.find<SplashController>().saveWebSuggestedLocationStatus(true);
-                              showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
+                              showGeneralDialog(context: Get.context!, pageBuilder: (_,_,_) {
                                 return const SizedBox(
                                     height: 300, width: 300,
                                     child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: true, route: null),

@@ -255,7 +255,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                         onPressed: () {
                           if(ResponsiveHelper.isDesktop(Get.context)) {
 
-                            showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                            showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                               return SizedBox(
                                 height: 300, width: 300,
                                 child: PickMapScreen(

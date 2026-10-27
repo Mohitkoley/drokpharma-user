@@ -237,7 +237,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                             child: InkWell(
                                               onTap: () {
                                                 if(ResponsiveHelper.isDesktop(Get.context)) {
-                                                  showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                                                  showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                                                     return SizedBox(
                                                       height: 300, width: 300,
                                                       child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: true, route: null, googleMapController: locationController.mapController)
@@ -483,7 +483,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
                           onTap: (latLng) {
                           if(ResponsiveHelper.isDesktop(Get.context)) {
-                            showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                            showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                               return SizedBox(
                                   height: 300, width: 300,
                                   child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: true, route: null, googleMapController: locationController.mapController)
@@ -552,7 +552,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           child: InkWell(
                             onTap: () {
                               if(ResponsiveHelper.isDesktop(Get.context)) {
-                                showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                                showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                                   return SizedBox(
                                       height: 300, width: 300,
                                       child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: true, route: null, googleMapController: locationController.mapController)

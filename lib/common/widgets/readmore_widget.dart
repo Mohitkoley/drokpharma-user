@@ -306,9 +306,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
         // Create a TextSpan with data
         final text = TextSpan(
           children: [
-            if (preTextSpan != null) preTextSpan,
+            ?preTextSpan,
             dataTextSpan,
-            if (postTextSpan != null) postTextSpan,
+            ?postTextSpan,
           ],
         );
 
@@ -433,9 +433,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
         return RichText(
           text: TextSpan(
             children: [
-              if (preTextSpan != null) preTextSpan,
+              ?preTextSpan,
               textSpan,
-              if (postTextSpan != null) postTextSpan,
+              ?postTextSpan,
             ],
           ),
           textAlign: textAlign,

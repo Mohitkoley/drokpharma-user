@@ -30,9 +30,6 @@ class CustomPopupMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       // 1. Anchor the menu to the custom button widget
-      child: child,
-
-      // 2. Define the callback when an item is tapped
       onSelected: onSelected,
 
       // 3. Customize the appearance of the entire menu container
@@ -52,6 +49,8 @@ class CustomPopupMenuButton extends StatelessWidget {
 
       // Tooltip is optional but good practice
       tooltip: 'Show actions menu',
+      // 1. Anchor the menu to the custom button widget
+      child: child,
     );
   }
 }

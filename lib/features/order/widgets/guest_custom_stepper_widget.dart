@@ -66,7 +66,7 @@ class GuestCustomStepperWidget extends StatelessWidget {
         )),
         subtitle: subTitle != null ? Text(subTitle!, style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall)) : const SizedBox(),
         trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-          if(trailing != null) trailing!,
+          ?trailing,
           if(trailing != null) const SizedBox(width: Dimensions.paddingSizeSmall),
 
           if(isActive) Icon(Icons.check_circle, color: Theme.of(context).primaryColor, size:  25),

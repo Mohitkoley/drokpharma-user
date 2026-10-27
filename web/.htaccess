@@ -9,3 +9,13 @@
   RewriteRule . /index.html [L]
 
 </IfModule>
+
+<IfModule mod_setenvif.c>
+  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js|json)$">
+    Header always set Cache-Control "no-store, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

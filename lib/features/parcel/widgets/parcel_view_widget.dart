@@ -139,7 +139,7 @@ class _ParcelViewWidgetState extends State<ParcelViewWidget> {
                   ) : TextButton.icon(
                     onPressed: () async {
                       if(isDesktop){
-                        showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                        showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                           return SizedBox(
                             height: 300, width: 300,
                             child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: false, route:'', onPicked: (AddressModel address) async {

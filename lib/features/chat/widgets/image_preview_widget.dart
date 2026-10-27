@@ -19,8 +19,8 @@ class ImagePreviewWidget extends StatefulWidget {
 class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
   PageController _pageController = PageController();
   int _currentIndex = 0;
-  Map<int, VideoPlayerController?> _videoControllers = {};
-  Map<int, ChewieController?> _chewieControllers = {};
+  final Map<int, VideoPlayerController?> _videoControllers = {};
+  final Map<int, ChewieController?> _chewieControllers = {};
 
   @override
   void initState() {

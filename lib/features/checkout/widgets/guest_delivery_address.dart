@@ -103,7 +103,7 @@ class _GuestDeliveryAddressState extends State<GuestDeliveryAddress> {
                 child: TextButton(
                   onPressed: () async {
                     if(isDesktop) {
-                      showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                      showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                         return SizedBox(
                           height: 300, width: 300,
                           child: PickMapScreen(fromAddAddress: false, fromSignUp: false, fromLandingPage: false,

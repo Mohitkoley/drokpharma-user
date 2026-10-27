@@ -83,7 +83,7 @@ class _ReceiverViewWidgetState extends State<ReceiverViewWidget> {
                   buttonText: 'set_from_map'.tr,
                   onPressed: () {
                     if(ResponsiveHelper.isDesktop(Get.context)) {
-                      showGeneralDialog(context: context, pageBuilder: (_,__,___) {
+                      showGeneralDialog(context: context, pageBuilder: (_,_,_) {
                         return SizedBox(
                             height: 300, width: 300,
                             child: PickMapScreen(fromSignUp: false, canRoute: false, fromAddAddress: false, route:'', onPicked: (AddressModel address) {
