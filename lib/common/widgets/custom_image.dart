@@ -35,6 +35,12 @@ class CustomImage extends StatelessWidget {
         parsedUrl != null &&
         (parsedUrl.scheme == 'http' || parsedUrl.scheme == 'https') &&
         parsedUrl.host.isNotEmpty;
+    final apiUri = Uri.parse(AppConstants.baseUrl);
+    final needsWebProxy =
+        kIsWeb && isNetworkImage && parsedUrl.host != apiUri.host;
+    final resolvedImageUrl = needsWebProxy
+        ? '${AppConstants.baseUrl}/image-proxy?url=${Uri.encodeQueryComponent(imageUrl)}'
+        : imageUrl;
     final hasUsableImage =
         imageUrl.isNotEmpty &&
         imageUrl.toLowerCase() != 'null' &&
@@ -44,9 +50,6 @@ class CustomImage extends StatelessWidget {
         : (isNotification
               ? Images.notificationPlaceholder
               : Images.placeholder);
-    final webImageUrl =
-        '${AppConstants.baseUrl}/image-proxy?url=${Uri.encodeQueryComponent(imageUrl)}${refreshWebImage ? '&v=${imageUrl.hashCode}' : ''}';
-
     return AnimatedScale(
       scale: isHovered ? 1.1 : 1.0,
       duration: const Duration(milliseconds: 300),
@@ -70,7 +73,10 @@ class CustomImage extends StatelessWidget {
           : CachedNetworkImage(
               key: ValueKey<String>('network-image-$imageUrl'),
               color: color,
-              imageUrl: kIsWeb ? webImageUrl : imageUrl,
+              // CanvasKit cannot decode cross-origin images that do not send
+              // CORS headers. Proxy only those external images; first-party
+              // images must stay direct to avoid a server self-request.
+              imageUrl: resolvedImageUrl,
               height: height,
               width: width,
               fit: fit,
