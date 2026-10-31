@@ -1,0 +1,45 @@
+name: Deploy Flutter web to production
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type DEPLOY to confirm production deployment
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: inputs.confirm == 'DEPLOY'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter build web --release
+      - name: Package web release
+        run: tar -czf flutter-web.tgz -C build/web .
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
+      - name: Configure pinned Hostinger host key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.HOSTINGER_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+      - name: Upload and activate web release
+        env:
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+          USER: ${{ secrets.HOSTINGER_USER }}
+          DEPLOY_ROOT: ${{ secrets.HOSTINGER_BACKEND_ROOT }}
+          WEB_ROOT: ${{ secrets.HOSTINGER_WEB_ROOT }}
+        run: |
+          scp -P "$PORT" flutter-web.tgz scripts/deploy-hostinger-web.sh "$USER@$HOST:/tmp/"
+          ssh -p "$PORT" "$USER@$HOST" "mkdir -p '$DEPLOY_ROOT/incoming' && mv /tmp/flutter-web.tgz '$DEPLOY_ROOT/incoming/flutter-web.tgz' && bash /tmp/deploy-hostinger-web.sh '$DEPLOY_ROOT' '$WEB_ROOT' '$DEPLOY_ROOT/incoming/flutter-web.tgz'"

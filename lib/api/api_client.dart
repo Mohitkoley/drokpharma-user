@@ -122,7 +122,11 @@ class ApiClient extends GetxService {
       debugPrint('====> API Call: $uri\nHeader: $_mainHeaders');
       debugPrint('====> API Body: $body with ${multipartBody.length} and multipart ${multipartDoc?.length}');
       http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(appBaseUrl+uri));
-      request.headers.addAll(headers ?? _mainHeaders);
+      // MultipartRequest supplies its own multipart/form-data boundary. Do not
+      // forward the default JSON content type or web uploads may be rejected.
+      Map<String, String> multipartHeaders = Map<String, String>.from(headers ?? _mainHeaders);
+      multipartHeaders.remove('Content-Type');
+      request.headers.addAll(multipartHeaders);
       for(MultipartBody multipart in multipartBody) {
         if(multipart.file != null) {
           if(kIsWeb) {

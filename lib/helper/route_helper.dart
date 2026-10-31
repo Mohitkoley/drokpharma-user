@@ -245,6 +245,10 @@ class RouteHelper {
   }
   static String getAddressRoute() => address;
   static String getOrderSuccessRoute(String orderID, String? contactNumber, {bool? createAccount, String guestId = ''}) {
+    // Do not expose contact details or guest identifiers in browser URLs.
+    if(GetPlatform.isWeb) {
+      return '$orderSuccess?id=$orderID&create_account=$createAccount';
+    }
     return '$orderSuccess?id=$orderID&contact_number=$contactNumber&create_account=$createAccount&guest_id=$guestId';
   }
 

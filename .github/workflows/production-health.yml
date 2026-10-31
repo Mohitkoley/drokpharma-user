@@ -1,0 +1,19 @@
+name: Production Health Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check public web application
+        run: curl --fail --show-error --max-time 20 --retry 2 https://drokpharma.in/
+      - name: Check Laravel API health endpoint
+        run: curl --fail --show-error --max-time 20 --retry 2 https://api.drokpharma.in/up
