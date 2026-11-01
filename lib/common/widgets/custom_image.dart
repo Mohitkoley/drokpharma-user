@@ -17,13 +17,17 @@ class CustomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String imageUrl = kIsWeb
+        ? '${AppConstants.baseUrl}/image-proxy?url=${Uri.encodeQueryComponent(image)}'
+        : image;
+
     return AnimatedScale(
       scale: isHovered ? 1.1 : 1.0,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
       child: CachedNetworkImage(
         color: color,
-        imageUrl: kIsWeb ? '${AppConstants.baseUrl}/image-proxy?url=$image' : image, height: height, width: width, fit: fit,
+        imageUrl: imageUrl, height: height, width: width, fit: fit,
         placeholder: (context, url) => Image.asset(
           placeholder.isNotEmpty ? placeholder : (isNotification ? Images.notificationPlaceholder : Images.placeholder),
           height: height, width: width, fit: fit, color: color,
