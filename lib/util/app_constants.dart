@@ -19,7 +19,17 @@ class AppConstants {
       '789606222810-vfrkrrt16up2h4nlb8vda8911g80lum3.apps.googleusercontent.com';
   static const String pusherBroadcustUrl = '/api/v1/broadcasting/user-auth';
 
+<<<<<<< Updated upstream
   static const String baseUrl = 'https://api.drokpharma.in';
+=======
+  // Override at build time, for example:
+  // flutter build web --dart-define=BASE_URL=https://staging.drokpharma.in
+  static const String baseUrl = String.fromEnvironment(
+    'BASE_URL',
+    defaultValue: 'http://127.0.0.1:8000',
+  );
+
+>>>>>>> Stashed changes
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String storeItemUri = '/api/v1/items/latest';

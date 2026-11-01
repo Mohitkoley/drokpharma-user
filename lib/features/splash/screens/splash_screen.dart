@@ -170,14 +170,23 @@ class SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       key: _globalKey,
       body: GetBuilder<SplashController>(builder: (splashController) {
-        return Center(
-          child: splashController.hasConnection ? Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(Images.logo, width: 200),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-            ],
-          ) : NoInternetScreen(child: SplashScreen(body: widget.body, deeplinkUrl: widget.deeplinkUrl)),
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            Opacity(
+              opacity: 0.16,
+              child: Image.asset(Images.splashBackground, fit: BoxFit.cover),
+            ),
+            Center(
+              child: splashController.hasConnection ? Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(Images.logo, width: 200),
+                  const SizedBox(height: Dimensions.paddingSizeSmall),
+                ],
+              ) : NoInternetScreen(child: SplashScreen(body: widget.body, deeplinkUrl: widget.deeplinkUrl)),
+            ),
+          ],
         );
       }),
     );
